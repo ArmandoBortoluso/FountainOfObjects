@@ -2,6 +2,9 @@
 
 GameMode selMode = GameMode.medium;
 bool correctMode = false;
+bool win = false;
+Room tempRoom;
+string action;
 
 while(true){
 
@@ -38,15 +41,26 @@ while(true){
 
 }
 
+Grid board = new Grid(selMode);
+Player newPlayer = new Player(board.Size.X);
 
+do{
+    tempRoom = board.returnRoom(newPlayer.getPlayerCoord());
+    Console.WriteLine($"You are in a room at (X = {newPlayer.getPlayerCoord().Item1} Y = {newPlayer.getPlayerCoord().Item2}");
+    tempRoom.showDescription();
+    Console.WriteLine("What do you want to do?");
 
-
-
-
-
-
-
+} while(win == false);
 
 
 
 public enum GameMode {easy, medium, hard};
+
+public enum Action{
+    MOVE_NORTH,
+    MOVE_SOUTH,
+    MOVE_WEST,
+    MOVE_EAST,
+    ENABLE,
+    DISABLE
+}
