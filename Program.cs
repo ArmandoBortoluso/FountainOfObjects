@@ -22,12 +22,12 @@ while(true){
         break;
 
         case "2":
-        selMode = GameMode.easy;
+        selMode = GameMode.medium;
         correctMode = true;
         break;
 
         case "3":
-        selMode = GameMode.easy;
+        selMode = GameMode.hard;
         correctMode = true;
         break;
 
