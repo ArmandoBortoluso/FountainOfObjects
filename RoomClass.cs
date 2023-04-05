@@ -10,9 +10,11 @@ public class Room{
 }
 
 
-public class fountainRoom : Room{
+public class FountainRoom : Room{
 
-    public fountainRoom(){
+    public bool Activated {get; private set;} = false;
+
+    public FountainRoom(){
 
         this.description = "You hear the water dripping in this room. The Fountain of Objects is here!";
     }
@@ -20,20 +22,21 @@ public class fountainRoom : Room{
     public void activeFountain(){
 
         this.description = "You hear the rushing waters from the Fountain of Objects. It has been reactivated!";
+        this.Activated = true;
     }
 
 }
 
-public class caveEntreance:Room{
+public class CaveEntreance:Room{
 
-    public caveEntreance(){
+    public CaveEntreance(){
         this.description = "You see light in this room coming from outside the cavern. This is the entrance.";
     }
 }
 
-public class emptyRoom:Room{
+public class EmptyRoom:Room{
 
-    public emptyRoom(){
+    public EmptyRoom(){
         this.description = "There is nothing to see, hear or smell here...";
     }
 }

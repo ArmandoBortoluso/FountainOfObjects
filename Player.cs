@@ -5,14 +5,14 @@ public class Player{
 
     private int step;
 
-    public bool winCondition = false;
+    private bool winCondition = false;
     
     public Player(int mapSize){
         this.playerCoord = (0,0);
         this.mapSize = mapSize;
     }
 
-    public void playerAction(Action action, (int X, int Y) fountainCoordinate){
+    public bool playerAction(Action action, (int X, int Y) fountainCoordinate){
 
         switch(action){
 
@@ -50,16 +50,15 @@ public class Player{
 
             case Action.DISABLE:
             break;           
-
-
-
         }
+
+        return this.winCondition;
     }
 
 
     private bool validateStep(int step){
 
-        if(step < this.mapSize && step > 0){
+        if(step < this.mapSize && step >= 0){
             return true;
         } else {
             Console.WriteLine("Sorry, there is a wall stopping you!");
