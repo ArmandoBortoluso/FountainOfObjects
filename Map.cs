@@ -16,27 +16,30 @@ public class Grid{
 
             case GameMode.easy:
             this.gameMap = new Room[4,4];
+            FountainCoordinate = (0,2);
             Size = (4,4);
             break;
 
             case GameMode.medium:
-            this.gameMap = new Room[5,5];
-            Size = (5,5);
+            this.gameMap = new Room[6,6];
+            FountainCoordinate = (4,5);
+            Size = (6,6);
             break;
 
             case GameMode.hard:
-            this.gameMap = new Room[7,7];
-            Size = (7,7);
+            this.gameMap = new Room[8,8];
+            FountainCoordinate = (2,7);
+            Size = (8,8);
             break;
         }
 
 
-        populateGrid(Size);
+        populateGrid(Size, FountainCoordinate);
 
 
     }
 
-    private void populateGrid((int X, int Y) size){
+    private void populateGrid((int X, int Y) size, (int X, int Y) fountainCoord){
 
 
         for(int i = 0; i < size.X; i++){
@@ -47,10 +50,9 @@ public class Grid{
 
                     this.gameMap[0,0] = new CaveEntreance();
 
-                } else if(i == 0 && j ==2){
+                } else if(i == fountainCoord.X && j == fountainCoord.Y){
 
-                    this.gameMap[0,2] = FRoom;
-                    this.FountainCoordinate = (i,j);
+                    this.gameMap[i,j] = FRoom;
 
                 } else{
 
