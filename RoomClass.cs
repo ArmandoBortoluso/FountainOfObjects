@@ -2,22 +2,23 @@ public class Room{
 
     protected string description;
 
+    public void showDescription(){
+
+        Console.WriteLine(description);
+    }
+
 }
 
 
 public class fountainRoom : Room{
 
-    private bool activatedFountain;
-
     public fountainRoom(){
 
         this.description = "You hear the water dripping in this room. The Fountain of Objects is here!";
-        this.activatedFountain = false;
     }
 
     public void activeFountain(){
 
-        this.activatedFountain = true;
         this.description = "You hear the rushing waters from the Fountain of Objects. It has been reactivated!";
     }
 
