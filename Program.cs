@@ -45,8 +45,19 @@ while(true){
 
 Grid board = new Grid(selMode);
 Player newPlayer = new Player(board.Size.X);
+Maelstron[] enemyArr = board.maelsArray;
 
 do{
+    //Manages Maelstron enemies
+    foreach(Maelstron m in enemyArr){
+        if(newPlayer.getPlayerCoord() == m.getCoord()){
+
+            newPlayer.movePlayer(m.affectPlayer(newPlayer.getPlayerCoord(), board.Size.X));
+            m.updateEnemyCoord(board.Size.X);
+            board.maelstronEffect();
+        }
+    }
+
     tempRoom = board.returnRoom(newPlayer.getPlayerCoord());
     Console.WriteLine($"You are in a room at (X = {newPlayer.getPlayerCoord().Item1} Y = {newPlayer.getPlayerCoord().Item2})");
     tempRoom.showDescription();
