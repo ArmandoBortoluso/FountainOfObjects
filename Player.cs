@@ -81,5 +81,9 @@ public class Player{
         return this.playerCoord;
     }
 
+    public void movePlayer((int , int) coord){
+        this.playerCoord = coord;
+    }
+
 
 }
