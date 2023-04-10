@@ -48,14 +48,20 @@ Player newPlayer = new Player(board.Size.X);
 Maelstron[] enemyArr = board.maelsArray;
 
 do{
+    if(selMode != GameMode.easy){
+
     //Manages Maelstron enemies
     foreach(Maelstron m in enemyArr){
         if(newPlayer.getPlayerCoord() == m.getCoord()){
 
+            Console.WriteLine("Oh no! You are in the same room that a maelstron! You have been pushed!");
+
             newPlayer.movePlayer(m.affectPlayer(newPlayer.getPlayerCoord(), board.Size.X));
             m.updateEnemyCoord(board.Size.X);
             board.maelstronEffect();
+            }
         }
+
     }
 
     tempRoom = board.returnRoom(newPlayer.getPlayerCoord());
