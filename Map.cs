@@ -43,6 +43,8 @@ public class Grid{
 
         this.mode = selectedDif;
         populateGrid(Size, FountainCoordinate);
+        createEnemies(this.mode);
+        maelstronEffect();
 
 
     }
@@ -88,6 +90,9 @@ public class Grid{
             this.maelsArray[0] = mal;
             this.maelsArray[1] = evil;
         }
+        else {
+            return;
+        }
 
     }
 
@@ -107,32 +112,44 @@ public class Grid{
         if(this.mode == GameMode.easy) return;
 
         (int X, int Y) maelCoord;
-        (int X, int Y)[] roomCord = new (int X, int Y)[(this.maelsArray.Length * 8)];
-        int k = 0;
 
-        //Populate roomCord array.
-        foreach(Maelstron m in this.maelsArray){
+        int[] affectedX;
+        int[] affectedY;
+
+        foreach(Maelstron m in maelsArray){
 
             maelCoord = m.getCoord();
-            for(int i = (maelCoord.X - 1); i <= (maelCoord.X + 1); i++){
-                for(int j = (maelCoord.Y - 1); j <= (maelCoord.Y + 1); j++){
 
-                    roomCord[k] = (i,j);
-                    k++;
+            affectedX = affectedCoordinates(maelCoord.X);
+            affectedY = affectedCoordinates(maelCoord.Y);
+
+            foreach(Room r in this.gameMap){
+
+                if(affectedX.Contains(r.roomCord.X)){
+                    if(affectedY.Contains(r.roomCord.Y)){
+                        r.underEffect = true;
+                        continue;
+                    }
                 }
-            }
-        }
 
-        //Update rooms effects
-        foreach(Room r in gameMap){
-
-            if(roomCord.Contains(r.roomCord)){
-                r.underEffect = true;
-            } else {
                 r.underEffect = false;
             }
+        }
+    }
+
+    private int[] affectedCoordinates(int coord){
+
+        int[] affectedCoord = new int[3];
+        int k = 0;
+
+        for(int i = (coord - 1); i <= (coord + 1); i++){
+
+            affectedCoord[k] = i;
+            k++;
 
         }
+
+        return affectedCoord;
 
     }
 }
